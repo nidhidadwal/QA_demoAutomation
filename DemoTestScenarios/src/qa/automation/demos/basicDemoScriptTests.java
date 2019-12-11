@@ -43,6 +43,7 @@ public class basicDemoScriptTests {
 		try{
 					
 			  driver.navigate().refresh(); 
+			  System.out.print(" test");
 			  setTimeOutForElements(driver,1000);
 			  // ISSUE : 
 			  //1. setTimeoUts is not working
