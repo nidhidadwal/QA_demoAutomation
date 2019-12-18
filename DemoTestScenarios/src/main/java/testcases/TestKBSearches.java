@@ -24,6 +24,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Nidhi
@@ -84,6 +85,8 @@ public class TestKBSearches {
 			prop.load(input);
 			System.out.println("Opening URL " + prop.getProperty("url"));
 			driver.get(prop.getProperty("url"));
+	        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
 			driver.manage().window().maximize();
 
 			driver.navigate().refresh();
@@ -98,7 +101,7 @@ public class TestKBSearches {
 			 */
 
 			driver.findElement(By.name("email")).clear();
-			kbs.setTimeOutForElements(driver, 2000);
+			kbs.setTimeOutForElements(driver, 1000);
 
 			kbs.getElementbyName(driver, "email");
 
@@ -192,12 +195,12 @@ public class TestKBSearches {
 			WebElement email = driver.findElement(By.name("email"));
 			highlightElement(driver, email);
 			email.sendKeys(prop.getProperty("email"));
-			setTimeOutForElements(driver, 2000);
+			setTimeOutForElements(driver, 1500);
 		} else if (name.equalsIgnoreCase(Constants.password)) {
 			WebElement password = driver.findElement(By.name("password"));
 			highlightElement(driver, password);
 			password.sendKeys(prop.getProperty("password"));
-			setTimeOutForElements(driver, 2000);
+			setTimeOutForElements(driver, 1500);
 
 		}
 
@@ -208,23 +211,23 @@ public class TestKBSearches {
 		btnName = driver.findElement(By.className(btnClassName));
 		highlightElement(driver, btnName);
 		btnName.click();
-		setTimeOutForElements(driver, 2000);
+		setTimeOutForElements(driver, 1500);
 
 	}
 
 	public void getElementbyXpath(WebDriver driver, String xPath, WebElement element) {
 
-		setTimeOutForElements(driver, 4000);
+		setTimeOutForElements(driver, 1500);
 		element = driver.findElement(By.xpath(xPath));
 		highlightElement(driver, element);
-		setTimeOutForElements(driver, 2000);
+		setTimeOutForElements(driver, 1000);
 
 		if (xPath.equals(Constants.emailAddressXpath))
 			element.sendKeys(prop.getProperty("chatUser"));
 		else
 			element.click();
 
-		setTimeOutForElements(driver, 2000);
+		setTimeOutForElements(driver, 1000);
 
 	}
 
@@ -256,16 +259,20 @@ public class TestKBSearches {
 		List<WebElement> botUIGreeting = driver.findElements(By.xpath(Constants.greetingXpath));
 
 		System.out.println("\n ##### TEST RESULTS ####\n");
+		if(!botUIGreeting.isEmpty()) {
+			if (Constants.greeting1.equalsIgnoreCase(botUIGreeting.get(0).getText())) {
+				System.out.println("Bot first Greeting Validation Passed");
+				if (Constants.greeting2.equalsIgnoreCase(botUIGreeting.get(1).getText()))
+					System.out.println("Bot second Greeting Validation Passed");
+				else
+					System.out.println("Bot second Greeting Validation Failed");
 
-		if (Constants.greeting1.equalsIgnoreCase(botUIGreeting.get(0).getText())) {
-			System.out.println("Bot first Greeting Validation Passed");
-			if (Constants.greeting2.equalsIgnoreCase(botUIGreeting.get(1).getText()))
-				System.out.println("Bot second Greeting Validation Passed");
-			else
-				System.out.println("Bot second Greeting Validation Failed");
-
-		} else
-			System.out.println("Bot first Greeting Validation Failed");
+			} else
+				System.out.println("Bot first Greeting Validation Failed");
+		}
+		else
+			System.out.println(" Could not validate as botUIGreeting size is "+botUIGreeting.size());
+		
 
 	}
 
@@ -309,14 +316,14 @@ public class TestKBSearches {
 		highlightElement(driver, questionElement);
 		questionElement.sendKeys(question1);
 		questionElement.sendKeys(Keys.ENTER);
-		setTimeOutForElements(driver, 3000);
+		setTimeOutForElements(driver, 1000);
 
 		String expectedResponse = "Sure, I can help";
 
-		setTimeOutForElements(driver, 3000);
+		setTimeOutForElements(driver, 1000);
 
 		WebElement chatReponseElement = driver.findElement(By.xpath(Constants.chatReponseXpath));
-		setTimeOutForElements(driver, 2000);
+		setTimeOutForElements(driver, 1000);
 		highlightElement(driver, chatReponseElement);
 		String chatResponse = chatReponseElement.getText();
 
@@ -337,7 +344,7 @@ public class TestKBSearches {
 		highlightElement(driver, questionElement);
 		questionElement.sendKeys(question2);
 		questionElement.sendKeys(Keys.ENTER);
-		setTimeOutForElements(driver, 3000);
+		setTimeOutForElements(driver, 1000);
 
 		List<String> expectedResponse = new ArrayList<String>();
 
@@ -353,7 +360,7 @@ public class TestKBSearches {
 		expectedResponse.add("Did this answer your question?");
 		expectedResponse.add("YesNoShow More");
 		
-		setTimeOutForElements(driver, 2000);
+		setTimeOutForElements(driver, 1000);
 
 		List<WebElement> chatReponseElements = driver.findElements(By.xpath(Constants.chatReponseXpath));
 
@@ -385,7 +392,7 @@ public class TestKBSearches {
 		highlightElement(driver, questionElement);
 		questionElement.click();
 
-		setTimeOutForElements(driver, 2000);
+		setTimeOutForElements(driver, 1500);
 
 		List<WebElement> chatQuestionElements = driver.findElements(By.xpath(Constants.chatQuestionXpath));
 
