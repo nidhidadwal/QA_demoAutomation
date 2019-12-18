@@ -1,0 +1,9 @@
+help
+conf call
+Wifi password
+AWS wifi
+Microsoft office
+who am I
+VPN
+lost my files
+recover my lost files
