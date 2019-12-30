@@ -1,9 +1,7 @@
-help
-conf call
 Wifi password
 AWS wifi
-Microsoft office
 who am I
+conf call
+Microsoft office
 VPN
-lost my files
-recover my lost files
+how to recover my lost files
