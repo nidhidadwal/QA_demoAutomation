@@ -89,6 +89,7 @@ public class TestKBSearches {
 			if (input == null) {
 				logger.error("Sorry, unable to find " + Constants.PROPERTIES_FILE_NAME);
 				driver.close();
+				driver.quit();
 				return;
 			}
 
@@ -170,12 +171,14 @@ public class TestKBSearches {
 			logger.error("Missing Command Line Arguments ",e);
 			e.printStackTrace();
 			driver.close();
+			driver.quit();
 			throw e;
 		} 
 		catch (IOException e) {
 			logger.error("Unable to load properties file ",e);
 			e.printStackTrace();
 			driver.close();
+			driver.quit();
 			throw e;
 			
 		} 
@@ -183,6 +186,7 @@ public class TestKBSearches {
 			logger.error("Exception caught ",ex);
 			ex.printStackTrace();
 			driver.close();
+			driver.quit();
 			throw ex;
 		}
 
