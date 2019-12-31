@@ -1,2 +1,7 @@
 /target/
 /.gradle/
+.gradle
+.idea
+*.iml
+build
+out

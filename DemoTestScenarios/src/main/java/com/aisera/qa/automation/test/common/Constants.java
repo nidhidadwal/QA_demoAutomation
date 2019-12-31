@@ -36,11 +36,5 @@ public class Constants {
 	public static final String YES_BTN_XPATH = "//button[contains(text(),'Yes')]";
 	public static final String NO_BTN_XPATH = "//button[contains(text(),'No')]";
 	public static final String CREATE_TKT_XPATH = "//button[contains(text(),'Create Ticket')]";
-	
-
-
-
-
-
 
 }

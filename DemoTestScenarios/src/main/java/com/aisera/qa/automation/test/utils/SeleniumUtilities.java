@@ -43,7 +43,7 @@ public class SeleniumUtilities {
 		highlightElement(driver, element);
 		setTimeOutForElements(driver, 1000);
 
-		if (xPath.equals(Constants.EMAIL_ADDRESS_XPATH))
+		if (xPath.equals(Constants.USER_NAME_XPATH))
 			element.sendKeys(prop.getProperty("chatUser"));
 		else
 			element.click();
